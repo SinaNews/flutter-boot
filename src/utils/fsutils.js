@@ -144,7 +144,7 @@ function projectChecker (projectPath) {
     return checker.isIOS() || checker.isAndroid()
   }
   checker.gradlePath = () => {
-    return path.join(checker.currentPath, 'app/build.gradle')
+    return path.join(checker.currentPath, 'SinaBlog/build.gradle')
   }
   checker.getProjectName = (force = false) => {
     if (!force && checker.projectName) {

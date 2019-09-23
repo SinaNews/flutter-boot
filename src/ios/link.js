@@ -122,8 +122,8 @@ class linker {
 
     log.silly(TAG, 'updating xcode setting')
     const task = [
-      'gem install xcodeproj',
-      `ruby ${path.join(
+      'sudo gem install -n /usr/local/bin xcodeproj',
+      `sudo ruby ${path.join(
         process.env.FB_DIR,
         'src/scripts/inject_flutter_script.rb'
       )} ${xcodeprojPath}`

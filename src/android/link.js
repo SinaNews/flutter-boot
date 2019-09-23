@@ -61,7 +61,7 @@ class linker {
   }
 
   buildGradle () {
-    return path.join(this.nativePath, 'app/build.gradle')
+    return path.join(this.nativePath, 'SinaBlog/build.gradle')
   }
 
   settingsGradle () {

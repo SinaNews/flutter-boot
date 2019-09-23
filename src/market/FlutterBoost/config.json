@@ -4,7 +4,7 @@
         "version": "0.1.52"
     },
     "android": {
-        "targetPath": "${workspace}/app/src/main/java/com/example/fbi"
+        "targetPath": "${workspace}/SinaBlog/src/main/java/com/sina/sinablog"
     },
     "ios": {
         "targetPath": "${workspace}/${projectname}/fbi"

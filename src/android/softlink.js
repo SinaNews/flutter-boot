@@ -17,7 +17,7 @@ function softlink (options) {
  */
 function configAndroidHost(nativePath) {
   let injection = "def flutterPluginVersion = 'managed' \n\n";
-  let filePath = path.join(nativePath, 'app/build.gradle')
+  let filePath = path.join(nativePath, 'SinaBlog/build.gradle')
   let rawdata = fs.readFileSync(filePath, 'utf8')
   if (!rawdata.includes(injection)) {
     const content = injection + rawdata
