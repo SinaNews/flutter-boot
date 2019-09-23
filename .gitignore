@@ -5,3 +5,5 @@ test/sandbox/
 test/tpl/tflutter/
 test/tpl/tios/tios.xcodeproj/project.xcworkspace/xcuserdata/
 test/tpl/tios/tios.xcodeproj/xcuserdata/
+
+.idea/
