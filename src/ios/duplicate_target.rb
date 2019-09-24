@@ -7,7 +7,7 @@ $src_target_name = ARGV[1]
 $new_target_name = ARGV[2]
 
 def get_src_target(proj)
-    src_target = proj.targets.find { |item| 
+    src_target = proj.targets.find { |item|
         item.name == $src_target_name
     }
     return src_target
@@ -21,7 +21,7 @@ def get_dependent_targets(proj, main_uuid)
     #PBXNativeTarget(inner target) -> PBXTargetDependency -> PBXNativeTarget(main target)
     proj.targets.each { |item|
         item.dependencies.each { |t_item|
-            if t_item.target.uuid.eql?(main_uuid) 
+            if t_item.target.uuid.eql?(main_uuid)
                 dependencies_array << item
             end
         }
@@ -30,7 +30,7 @@ def get_dependent_targets(proj, main_uuid)
 end
 
 def clear_env(proj)
-    proj.targets.delete_if { |item| 
+    proj.targets.delete_if { |item|
         item.product_name.index($new_target_name) == 0 #the same prefix
     }
 end
@@ -101,6 +101,7 @@ end
 
 if __FILE__ == $0
     proj = Xcodeproj::Project.open(ARGV[0])
+    p ARGV
     src_target = get_src_target(proj)
     dependencies_array = get_dependent_targets(proj, src_target.uuid)
     if !dependencies_array.empty?

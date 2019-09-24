@@ -57,10 +57,10 @@ class linker {
     this.preparePodfile()
     this.preparePodHelper()
     this.inject_xcode(this.projectName)
-    this.addRunnerTargetToProject()
-    this.addRunnerTargetToPodfile()
+    // this.addRunnerTargetToProject()
+    // this.addRunnerTargetToPodfile()
     this.injectGitIgnore()
-    this.execSync('pod install')
+    // this.execSync('pod install')
     softlink(options)
   }
 
@@ -122,8 +122,8 @@ class linker {
 
     log.silly(TAG, 'updating xcode setting')
     const task = [
-      'sudo gem install -n /usr/local/bin xcodeproj',
-      `sudo ruby ${path.join(
+      'gem install -n /usr/local/bin xcodeproj',
+      `ruby ${path.join(
         process.env.FB_DIR,
         'src/scripts/inject_flutter_script.rb'
       )} ${xcodeprojPath}`
