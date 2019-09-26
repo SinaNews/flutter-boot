@@ -22,10 +22,12 @@ def get_dependent_targets(proj, main_uuid)
     proj.targets.each { |item|
         item.dependencies.each { |t_item|
             if t_item.target.uuid.eql?(main_uuid)
+                p t_item
                 dependencies_array << item
             end
         }
     }
+
     return dependencies_array
 end
 
@@ -101,10 +103,9 @@ end
 
 if __FILE__ == $0
     proj = Xcodeproj::Project.open(ARGV[0])
-    p ARGV
     src_target = get_src_target(proj)
     dependencies_array = get_dependent_targets(proj, src_target.uuid)
-    if !dependencies_array.empty?
+#     if !dependencies_array.empty?
         create_runner_target(proj, src_target, dependencies_array)
-    end
+#     end
 end

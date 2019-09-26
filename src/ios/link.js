@@ -57,10 +57,10 @@ class linker {
     this.preparePodfile()
     this.preparePodHelper()
     this.inject_xcode(this.projectName)
-    // this.addRunnerTargetToProject()
-    // this.addRunnerTargetToPodfile()
+    this.addRunnerTargetToProject()
+    this.addRunnerTargetToPodfile()
     this.injectGitIgnore()
-    // this.execSync('pod install')
+    this.execSync('pod install')
     softlink(options)
   }
 
