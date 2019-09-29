@@ -10,12 +10,13 @@ const IOS_LINK_PATH = 'ios';
 
 function softlink (options) {
     var nativePath = options.nativePath;
+    var projectName = options.projectName;
     var flutterPath = path.resolve(nativePath, options.flutterPath);
-    linkUserProject(flutterPath, nativePath);
+    linkUserProject(flutterPath, nativePath, projectName);
     exportEnv(flutterPath);
 }
 
-function linkUserProject (flutterPath, nativePath) {
+function linkUserProject (flutterPath, nativePath, projectName) {
     log.info(TAG, 'create soft link');
     var iosLinkPath = path.join(flutterPath, IOS_LINK_PATH);
     rimraf.sync(iosLinkPath);
@@ -40,9 +41,13 @@ function linkUserProject (flutterPath, nativePath) {
     fsutils.createSoftLink(path.join(iosLinkPath, 'Info.plist'), path.join(nativePath, path.basename(nativePath), 'Info.plist'));
     fsutils.createSoftLink(path.join(iosLinkPath, 'fbConfig.local.json'), path.join(nativePath, 'fbConfig.local.json'));
 
-    if (!fs.existsSync(path.join(iosLinkPath, '../PodSpecs'))) {
-        fs.writeFileSync(path.join(iosLinkPath, '../PodSpecs'));
-        fsutils.createSoftLink(path.join(iosLinkPath, '../PodSpecs'), path.join(nativePath, '../PodSpecs'));
+    //@sunxiao5，博客项目专用，因为博客项目有本地存放podspce，这个其实是有问题的
+    //todo 后面还是应该有个配置文件，而不应该直接写死
+    if (projectName == 'SinaBlog') {
+        if (!fs.existsSync(path.join(iosLinkPath, '../PodSpecs'))) {
+            fs.writeFileSync(path.join(iosLinkPath, '../PodSpecs'));
+            fsutils.createSoftLink(path.join(iosLinkPath, '../PodSpecs'), path.join(nativePath, '../PodSpecs'));
+        }
     }
 }
 

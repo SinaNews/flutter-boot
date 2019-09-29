@@ -61,8 +61,13 @@ class linker {
         this.addRunnerTargetToProject();
         this.addRunnerTargetToPodfile();
         this.injectGitIgnore();
-        // this.execSync('pod install');
-        softlink(options);
+        this.execSync('pod install');
+        const softlink_options = {
+            flutterPath: options.nativePath,
+            nativePath: options.flutterPath,
+            projectName: this.getProjectName()
+        };
+        softlink(softlink_options);
     }
 
     linkRemote () {

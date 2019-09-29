@@ -37,6 +37,7 @@ function cleanFlutterRecord () {
 }
 
 module.exports = {
+  // @sunxiao5，不缓存flutter module路径，以避免有多个flutter module项目的时候出现冲突
   // recordFlutterModule,
   existedFlutterModule,
   flutterRecorderPath,
