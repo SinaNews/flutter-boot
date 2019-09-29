@@ -37,7 +37,7 @@ function cleanFlutterRecord () {
 }
 
 module.exports = {
-  recordFlutterModule,
+  // recordFlutterModule,
   existedFlutterModule,
   flutterRecorderPath,
   cleanFlutterRecord

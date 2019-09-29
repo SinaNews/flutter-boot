@@ -13,11 +13,13 @@ if File.exists? fbJsonPath
     end
 end
 if fbFlutterPath == nil
-    result = `flutter-boot update`
-    fbFlutterPath = '.fbflutter'
+    p "fbconfig.local.json's path is nil"
+    exit(-1)
 end
 
 flutter_application_path = fbFlutterPath
-eval(File.read(File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')), binding) 
+eval(File.read(File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')), binding)
+
+$g_flutter_path = flutter_application_path
 
 $REGISTER_MODE = false

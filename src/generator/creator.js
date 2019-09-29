@@ -31,7 +31,7 @@ class creator {
     execSync('flutter create -t module ' + moduleName.toLowerCase(), {
       stdio: 'inherit'
     })
-    recordFlutterModule(path.join(initDir, moduleName))
+    // recordFlutterModule(path.join(initDir, moduleName))
     log.info(TAG, 'flutter module created')
     generateShellProject(path.join(initDir, moduleName))
     log.info(TAG, 'native shell project created')

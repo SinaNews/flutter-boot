@@ -74,8 +74,24 @@ end
 def copy_settings(src_target, target)
     # copy build_configurations
     target.build_configurations.map do |item|
-        item.build_settings.update(src_target.build_settings(item.name))
+#         item.build_settings.update(src_target.build_settings(item.name))
+        src_target.build_settings(item.name).each do |key,value|
+            if key == 'GCC_PREPROCESSOR_DEFINITIONS'
+                arr = Array.new
+                value.each do |v2|
+                    if v2 == "MY_TARGET_TYPE=1"
+                        arr.push("MY_TARGET_TYPE=0")
+                    else
+                        arr.push(v2)
+                    end
+                end
+                item.build_settings.store(key,arr)
+            else
+                item.build_settings.store(key,value)
+            end
+        end
     end
+
     # Copy the build phases
     target.build_phases.clear
     src_target.build_phases.each do |phase|
